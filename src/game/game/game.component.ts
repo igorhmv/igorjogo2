@@ -31,8 +31,8 @@ export var scaleRatio = window.devicePixelRatio / 3;
 config= {
 
   type: Phaser.CANVAS,
-  height: height,//window.innerHeight* window.devicePixelRatio,
-  width: width,//window.innerWidth* window.devicePixelRatio,
+  height: "100%",//window.innerHeight* window.devicePixelRatio,
+  width: "100%",//window.innerWidth* window.devicePixelRatio,
 
   scene: [MenuComponent,RulesComponent,CreditsComponent,CovidBookComponent,PreventHintsComponent,MainScene,GameoverComponent],
   parent: 'gameContainer',

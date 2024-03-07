@@ -392,17 +392,17 @@ export class MainScene extends Phaser.Scene {
     actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
 
 
-    //downArrow.on('pointerdown', () => { isDown = true; });
-    //downArrow.on('pointerup', () => { isDown = false; });
+    downArrow.on('pointerdown', () => { isDown = true; });
+    downArrow.on('pointerup', () => { isDown = false; });
 
-    //upArrow.on('pointerdown', () => { isUp = true; });
-    //upArrow.on('pointerup', () => { isUp = false; });
+    upArrow.on('pointerdown', () => { isUp = true; });
+    upArrow.on('pointerup', () => { isUp = false; });
 
-    //leftArrow.on('pointerdown', () => { isLeft = true; });
-    //leftArrow.on('pointerup', () => { isLeft = false; });
+    leftArrow.on('pointerdown', () => { isLeft = true; });
+    leftArrow.on('pointerup', () => { isLeft = false; });
 
-    //rightArrow.on('pointerdown', () => { isRight = true; });
-    //rightArrow.on('pointerup', () => { isRight = false; });
+    rightArrow.on('pointerdown', () => { isRight = true; });
+    rightArrow.on('pointerup', () => { isRight = false; });
 
     actionButton.on('pointerdown', () => { isAction = true; });
     actionButton.on('pointerup', () => { isAction = false; });
