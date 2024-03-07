@@ -98,8 +98,10 @@ export class GameComponent extends Phaser.Scene implements OnInit {
 
 
   ngOnInit() {
-    width=window.innerHeight* window.devicePixelRatio;
-    height=window.innerHeight* window.devicePixelRatio;
+    //width=window.innerHeight* window.devicePixelRatio;
+    //height=window.innerHeight* window.devicePixelRatio;
+    width=screen.width//window.innerHeight* window.devicePixelRatio;
+  height=screen.height//window.innerHeight* window.devicePixelRatio;
   }
 
   initialize: boolean = true;
@@ -112,8 +114,10 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   }
 
   create() {
-    width=window.innerHeight* window.devicePixelRatio;
-    height=window.innerHeight* window.devicePixelRatio;
+    //width=window.innerHeight* window.devicePixelRatio;
+    //height=window.innerHeight* window.devicePixelRatio;
+    width=screen.width//window.innerHeight* window.devicePixelRatio;
+  height=screen.height//window.innerHeight* window.devicePixelRatio;
   }
 
   getGame(){

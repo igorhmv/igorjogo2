@@ -404,8 +404,8 @@ export class MainScene extends Phaser.Scene {
     //rightArrow.on('pointerdown', () => { isRight = true; });
     //rightArrow.on('pointerup', () => { isRight = false; });
 
-    //actionButton.on('pointerdown', () => { isAction = true; });
-    //actionButton.on('pointerup', () => { isAction = false; });
+    actionButton.on('pointerdown', () => { isAction = true; });
+    actionButton.on('pointerup', () => { isAction = false; });
 
 
 
@@ -446,12 +446,12 @@ export class MainScene extends Phaser.Scene {
        isRight=false;
       }
 
-      if(o.name == "action"){
-        isAction=true;
-        return;
-      }else{
-        isAction=false;
-      }
+     // if(o.name == "action"){
+      //  isAction=true;
+      //  return;
+     // }//else{
+        //isAction=false;
+      //}
     }
     })
 
