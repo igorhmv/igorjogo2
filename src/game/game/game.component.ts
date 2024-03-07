@@ -22,8 +22,8 @@ export var config: Phaser.Types.Core.GameConfig
 
 
 
-export var width=window.innerHeight* window.devicePixelRatio;
-export var height=window.innerHeight* window.devicePixelRatio;
+export var width=screen.width//window.innerHeight* window.devicePixelRatio;
+export var height=screen.height//window.innerHeight* window.devicePixelRatio;
 
 export var scaleRatio = window.devicePixelRatio / 3;
 
@@ -83,8 +83,8 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   static worldWidth = 0
 
   override update() {
-    width=window.innerHeight* window.devicePixelRatio;
-  height=window.innerHeight* window.devicePixelRatio;
+    width=screen.width//window.innerHeight* window.devicePixelRatio;
+  height=screen.height//window.innerHeight* window.devicePixelRatio;
 
     scaleRatio = window.devicePixelRatio / 3;
 
