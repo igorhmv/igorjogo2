@@ -52,6 +52,8 @@ const createControls = (
   return controls;
 };
 
+
+
 const loadFirstViruses = (
   scene: Phaser.Scene
 ) => {
@@ -132,6 +134,7 @@ const attackA = (game:Phaser.Scene,player:Phaser.Types.Physics.Arcade.SpriteWith
   alcoolSprays:Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[]): void => {
   if( !playerStatus.attacking && playerStatus.alcoolAmmo > 0){
     playerStatus.attacking=true;
+    isAction=false;
     var x = game.physics.add.sprite(player.x,player.y,"spray");
 
 
@@ -415,7 +418,7 @@ export class MainScene extends Phaser.Scene {
     leftArrow.depth=1;
     rightArrow.depth=1;
     actionButton.depth=1;
-
+    /*
     this.input
    //.setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
   .on('pointerdown', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
@@ -453,7 +456,7 @@ export class MainScene extends Phaser.Scene {
         //isAction=false;
       //}
     }
-    })
+    })*/
 
   // .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
     /*
