@@ -99,7 +99,7 @@ const configControls = (
     //isDown=false;
     return;
   }
-  if ((controls.up.isDown || isUp) && player.y > 0) {
+  else if ((controls.up.isDown || isUp) && player.y > 0) {
     player.setVelocityY(-speed);
     playerStatus.side=up;
     //isUp=false;
@@ -112,7 +112,7 @@ const configControls = (
     //isRight=false;
     return;
   }
-  if ((controls.left.isDown || isLeft) && player.x > 0) {
+  else if ((controls.left.isDown || isLeft) && player.x > 0) {
     player.setVelocityX(-speed);
     playerStatus.side=left;
     //isLeft=false;
