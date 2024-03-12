@@ -6,6 +6,7 @@ import { MainScene } from '../MainScene/MainScene';
 
 import {config,phaserGame} from '../game.component'
 import { initialize } from '@ionic/core';
+import { sanitizeIdentifier } from '@angular/compiler';
 
 const configControls = (
 
@@ -67,6 +68,10 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
     this.load.image('credits','../../../assets/icon/CreditsIcon.png');
     this.load.image('covidBook','../../../assets/icon/CovidBookIcon.png');
     this.load.image('preventHints','../../../assets/icon/PreventHintsIcon.png');
+
+   //var widthX=window.innerWidth*window.devicePixelRatio;
+//var heightX=window.innerHeight* window.devicePixelRatio;
+    this.scale.setGameSize(width,height);
   }
 
   create(){
@@ -125,6 +130,13 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
 
 
   override update(){
+
+    //console.log(phaserGame.scale.width + " x "+phaserGame.scale.height );
+
+
+    phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
+
+
 
     configControls(this.controls,this);
 

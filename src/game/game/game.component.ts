@@ -9,6 +9,7 @@ import { MainScene } from 'src/game/game/MainScene/MainScene';
 
 import Phaser, { NONE, Scene } from 'phaser';
 import { RulesComponent } from './rules/rules.component';
+import { DOCUMENT } from '@angular/common';
 
 // Aspect Ratio 16:9 - Portrait
 const MAX_SIZE_WIDTH_SCREEN = 1920
@@ -22,20 +23,23 @@ export var config: Phaser.Types.Core.GameConfig
 
 
 
-export var width=screen.width//window.innerHeight* window.devicePixelRatio;
-export var height=screen.height//window.innerHeight* window.devicePixelRatio;
+export var width=window.innerWidth*window.devicePixelRatio;
+export var height=window.innerHeight* window.devicePixelRatio;
 
 export var scaleRatio = window.devicePixelRatio / 3;
+
+
+
 
 
 config= {
 
   type: Phaser.CANVAS,
-  height: "100%",//window.innerHeight* window.devicePixelRatio,
-  width: "100%",//window.innerWidth* window.devicePixelRatio,
+  height: SIZE_HEIGHT_SCREEN,//window.innerHeight* window.devicePixelRatio,
+  width:SIZE_WIDTH_SCREEN, //window.innerWidth* window.devicePixelRatio,
 
   scene: [MenuComponent,RulesComponent,CreditsComponent,CovidBookComponent,PreventHintsComponent,MainScene,GameoverComponent],
-  parent: 'gameContainer',
+  parent: 'game',
   physics: {
     default: 'arcade',
     arcade: {
@@ -48,8 +52,8 @@ config= {
   scale: {
     mode: Phaser.Scale.FIT,
     parent: 'game',
-    height: height,
-    width: width,
+    height: SIZE_HEIGHT_SCREEN,
+    width: SIZE_WIDTH_SCREEN,
 
 
     min: {
@@ -60,16 +64,31 @@ config= {
         width: MAX_SIZE_WIDTH_SCREEN,
         height: MAX_SIZE_HEIGHT_SCREEN
     },
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    autoCenter: Phaser.Scale.CENTER_BOTH
 
 },
 };
 
 export var phaserGame:Phaser.Game//= new Phaser.Game(config);
 
+function resize() {
+  let game_ratio = 540 / 960
+  let window_ratio = window.innerWidth / window.innerHeight
+  let container = phaserGame.canvas;
+  console.log(container);
+  if(container != null){
+  if (window_ratio > game_ratio) {
+  container.style.height = window.innerHeight + 'px'
+  } else if (window_ratio < game_ratio) {
+  container.style.width = window.innerWidth + 'px'
+  container.style.height = window.innerHeight + 'px'
+  }
+  }else{
 
+  }
+}
 
-
+//window.addEventListener('resize', resize)
 
 @Component({
   selector: 'app-game',
@@ -78,20 +97,29 @@ export var phaserGame:Phaser.Game//= new Phaser.Game(config);
 })
 export class GameComponent extends Phaser.Scene implements OnInit {
 
+
   public phaserGame:Phaser.Game =new Phaser.Game(config);
 
   static worldWidth = 0
 
   override update() {
-    width=screen.width//window.innerHeight* window.devicePixelRatio;
-  height=screen.height//window.innerHeight* window.devicePixelRatio;
 
-    scaleRatio = window.devicePixelRatio / 3;
+
+
+
+    //width=window.innerHeight//* window.devicePixelRatio;
+  //height=window.innerHeight//* window.devicePixelRatio;
+
+    //scaleRatio = window.devicePixelRatio / 3;
 
 
   }
 
-
+  preload(){
+    //width=window.innerWidth*window.devicePixelRatio;
+ // height=window.innerHeight* window.devicePixelRatio;
+    //this.scale.setGameSize(width,height);
+  }
 
 
 
@@ -100,8 +128,8 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   ngOnInit() {
     //width=window.innerHeight* window.devicePixelRatio;
     //height=window.innerHeight* window.devicePixelRatio;
-    width=screen.width//window.innerHeight* window.devicePixelRatio;
-  height=screen.height//window.innerHeight* window.devicePixelRatio;
+    //width=window.innerHeight* window.devicePixelRatio;
+  //height=window.innerHeight* window.devicePixelRatio;
   }
 
   initialize: boolean = true;
@@ -110,21 +138,21 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     super('app-game');
     //phaserGame= new Phaser.Game(config);
     this.game = phaserGame;
-
+    phaserGame = this.phaserGame;
   }
 
   create() {
+
+
     //width=window.innerHeight* window.devicePixelRatio;
     //height=window.innerHeight* window.devicePixelRatio;
-    width=screen.width//window.innerHeight* window.devicePixelRatio;
-  height=screen.height//window.innerHeight* window.devicePixelRatio;
+    //width=window.innerHeight* window.devicePixelRatio;
+  //height=window.innerHeight* window.devicePixelRatio;
   }
 
-  getGame(){
 
-    return phaserGame;
-  }
-
+   getGame(): Phaser.Game
+  {return this.phaserGame;}
 
 
 }

@@ -31,6 +31,8 @@ export class GameoverComponent extends Phaser.Scene implements OnInit {
   preload(){
     this.load.image('tryAgain','../../../assets/icon/TryAgainIcon.png');
     this.load.image('giveUp','../../../assets/icon/GiveUpIcon.png');
+
+    this.scale.setGameSize(width,height);
   }
 
   create(){

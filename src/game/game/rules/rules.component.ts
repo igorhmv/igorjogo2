@@ -25,13 +25,14 @@ export class RulesComponent extends Phaser.Scene implements OnInit {
 
   preload(){
     this.load.image('back','../../../assets/icon/BackIcon.png');
+    this.scale.setGameSize(width,height);
   }
 
   create(){
     this.titleText=this.add.text(width/2-100, 10, 'Regras', { font: '50px Arial',color:'#000000',align:'center' });
 
 
-    this.rulesText=this.add.text(width/2-350,100,'Coloque álcool gel no caminho dos COVIDs para eliminá-los.\nPegue remédio para aumentar saúde e sprays de álcool gel para usá-lo mais.\nPressione os botões de setas para andar e pressione o botão "A" para despejar álcool gel.',{ font: '15px Arial',color:'#000000' });
+    this.rulesText=this.add.text(width/2-300,100,'Coloque álcool gel no caminho dos COVIDs para eliminá-los.\nPegue remédio para aumentar saúde e sprays de álcool gel para usá-lo mais.\nPressione os botões de setas para andar e pressione o botão "A" para despejar álcool gel.',{ font: '10px Arial',color:'#000000' });
 
     this.backIcon = this.add.image(width/2,600,'back').setName("back").setInteractive();
 

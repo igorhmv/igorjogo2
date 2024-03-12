@@ -382,6 +382,7 @@ export class MainScene extends Phaser.Scene {
 
   create() {
 
+
     isDown = false;
     isUp = false;
     isLeft = false;
@@ -544,10 +545,11 @@ export class MainScene extends Phaser.Scene {
 
     this.load.image('remedy','../../assets/remedio.png')
     this.cameras.main.setBackgroundColor('#114E94');
+    this.scale.setGameSize(width,height);
   }
   override update() {
 
-
+    //phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
 
     configControls(player, this.controls, this, this.playerSpeed,covids,alcoolSprays);
     updatePlayer(this,player,covids,alcoolSprays);
@@ -615,6 +617,7 @@ export class MainScene extends Phaser.Scene {
     alcoolSprays=[];
 
   }
+
 
 
 

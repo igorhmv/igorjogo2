@@ -24,6 +24,8 @@ export class CovidBookComponent extends Phaser.Scene implements OnInit {
     this.load.image('beta','../../../assets/betaVariant.png');
     this.load.image('gamma','../../../assets/gammaVariant.png');
     this.load.image('delta','../../../assets/deltaVariant.png');
+
+    this.scale.setGameSize(width,height);
   }
 
   create(){
