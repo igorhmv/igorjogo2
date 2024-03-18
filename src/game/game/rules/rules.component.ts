@@ -48,7 +48,7 @@ export class RulesComponent extends Phaser.Scene implements OnInit {
 
   override update() {
     this.titleText?.setFontSize("50px")
-    this.rulesText?.setFontSize("15px")
+    this.rulesText?.setFontSize("20px")
   }
 
 }
