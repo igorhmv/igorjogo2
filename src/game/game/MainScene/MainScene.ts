@@ -389,11 +389,11 @@ export class MainScene extends Phaser.Scene {
     isRight=false;
     isAction=false;
 
-    upArrow = this.add.image(200,height - 300,'up').setName("up").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
-    downArrow = this.add.image(200,height - 100,'down').setName("down").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
-    leftArrow = this.add.image(100,height - 200,'left').setName("left").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
-    rightArrow = this.add.image(300,height - 200,'right').setName("right").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
-    actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
+    upArrow = this.add.image(200,height - 300,'up').setName("up").setInteractive().setScale(2,2);
+    downArrow = this.add.image(200,height - 100,'down').setName("down").setInteractive().setScale(2,2);
+    leftArrow = this.add.image(100,height - 200,'left').setName("left").setInteractive().setScale(2,2);
+    rightArrow = this.add.image(300,height - 200,'right').setName("right").setInteractive().setScale(2,2);
+    actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
 
 
     downArrow.on('pointerdown', () => { isDown = true; });

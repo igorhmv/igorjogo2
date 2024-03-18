@@ -70,7 +70,7 @@ config= {
 
 export var phaserGame:Phaser.Game//= new Phaser.Game(config);
 
-function resize() {
+export function resize() {
   let game_ratio = 540 / 960
   let window_ratio = window.innerWidth / window.innerHeight
   let container = phaserGame.canvas;
@@ -81,13 +81,17 @@ function resize() {
   } else if (window_ratio < game_ratio) {
   container.style.width = window.innerWidth + 'px'
   container.style.height = window.innerHeight + 'px'
-  }
   }else{
+    container.style.height = window.innerHeight + 'px'
 
+    //container.style.width = window.innerWidth + 'px'
+    //container.style.height = window.innerHeight + 'px'
+  }
   }
 }
 
-//window.addEventListener('resize', resize)
+
+window.addEventListener('resize', resize)
 
 @Component({
   selector: 'app-game',
@@ -103,7 +107,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
 
   override update() {
 
-    resize();
+    //resize();
 
 
     //width=window.innerHeight//* window.devicePixelRatio;
