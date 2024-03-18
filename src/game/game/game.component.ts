@@ -31,7 +31,6 @@ export var scaleRatio = window.devicePixelRatio / 3;
 
 
 
-
 config= {
 
   type: Phaser.CANVAS,
@@ -104,7 +103,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
 
   override update() {
 
-
+    resize();
 
 
     //width=window.innerHeight//* window.devicePixelRatio;

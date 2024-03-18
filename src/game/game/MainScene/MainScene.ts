@@ -1,4 +1,4 @@
-import { phaserGame,width,height } from './../game.component';
+import { phaserGame, width, height, scaleRatio } from './../game.component';
 
 import { booleanAttribute, destroyPlatform, numberAttribute } from '@angular/core';
 import { Collision } from 'matter';
@@ -389,11 +389,11 @@ export class MainScene extends Phaser.Scene {
     isRight=false;
     isAction=false;
 
-    upArrow = this.add.image(200,height - 300,'up').setName("up").setInteractive().setScale(2,2);
-    downArrow = this.add.image(200,height - 100,'down').setName("down").setInteractive().setScale(2,2);
-    leftArrow = this.add.image(100,height - 200,'left').setName("left").setInteractive().setScale(2,2);
-    rightArrow = this.add.image(300,height - 200,'right').setName("right").setInteractive().setScale(2,2);
-    actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
+    upArrow = this.add.image(200,height - 300,'up').setName("up").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
+    downArrow = this.add.image(200,height - 100,'down').setName("down").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
+    leftArrow = this.add.image(100,height - 200,'left').setName("left").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
+    rightArrow = this.add.image(300,height - 200,'right').setName("right").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
+    actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2*scaleRatio,2*scaleRatio);
 
 
     downArrow.on('pointerdown', () => { isDown = true; });
@@ -487,21 +487,25 @@ export class MainScene extends Phaser.Scene {
     this.healthBarBorder= new Phaser.GameObjects.Graphics(this);
     this.healthBarBorder.x = 8;
     this.healthBarBorder.y = 23;
+    this.healthBarBorder.depth = 1;
     this.add.existing(this.healthBarBorder);
 
     this.healthBar = new Phaser.GameObjects.Graphics(this);
     this.healthBar.x = 10;
     this.healthBar.y = 25;
+    this.healthBar.depth = 1;
     this.add.existing(this.healthBar);
 
     this.AlcoolBarBorder= new Phaser.GameObjects.Graphics(this);
     this.AlcoolBarBorder.x = 100;
     this.AlcoolBarBorder.y = 23;
+    this.AlcoolBarBorder.depth = 1;
     this.add.existing(this.AlcoolBarBorder);
 
     this.AlcoolBar = new Phaser.GameObjects.Graphics(this);
     this.AlcoolBar.x = 102;
     this.AlcoolBar.y = 25;
+    this.AlcoolBar.depth = 1;
     this.add.existing(this.AlcoolBar);
 
 
