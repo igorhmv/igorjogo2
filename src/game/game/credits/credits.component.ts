@@ -26,7 +26,7 @@ export class CreditsComponent extends Phaser.Scene implements OnInit {
 
   create(){
     this.add.text(width/2-100, 10, 'Créditos', { font: '50px Arial',color:'#000000' });
-    this.add.text(width/2-400, 100, 'Criado por Igor Giusti Cardona Alves no Hospital Moinhos de Vento', { font: '20px Arial',color:'#000000' });
+    this.add.text(width/2-400, 100, 'Criado por Igor Giusti Cardona Alves no Hospital Moinhos de Vento', { font: '25px Arial',color:'#000000' });
     this.backIcon = this.add.image(width/2,200,'back').setName("back").setInteractive();
 
     this.input

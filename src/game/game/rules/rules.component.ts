@@ -32,7 +32,7 @@ export class RulesComponent extends Phaser.Scene implements OnInit {
     this.titleText=this.add.text(width/2-100, 10, 'Regras', { font: '50px Arial',color:'#000000',align:'center' });
 
 
-    this.rulesText=this.add.text(width/2-300,100,'Coloque álcool gel no caminho dos COVIDs para eliminá-los.\nPegue remédio para aumentar saúde e sprays de álcool gel para usá-lo mais.\nPressione os botões de setas para andar e pressione o botão "A" para despejar álcool gel.',{ font: '20px Arial',color:'#000000' });
+    this.rulesText=this.add.text(width/2-500,100,'Coloque álcool gel no caminho dos COVIDs para eliminá-los.\nPegue remédio para aumentar saúde e sprays de álcool gel para usá-lo mais.\nPressione os botões de setas para andar e pressione o botão "A" para despejar álcool gel.',{ font: '25px Arial',color:'#000000' });
 
     this.backIcon = this.add.image(width/2,600,'back').setName("back").setInteractive();
 
@@ -48,7 +48,7 @@ export class RulesComponent extends Phaser.Scene implements OnInit {
 
   override update() {
     this.titleText?.setFontSize("50px")
-    this.rulesText?.setFontSize("20px")
+    this.rulesText?.setFontSize("25px")
   }
 
 }

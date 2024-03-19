@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import Phaser from 'phaser';
 import { MainScene } from '../MainScene/MainScene';
 
-import {config,phaserGame} from '../game.component'
+import {config,phaserGame,resize} from '../game.component'
 import { initialize } from '@ionic/core';
 import { sanitizeIdentifier } from '@angular/compiler';
 
@@ -105,7 +105,7 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
       if(o.name == "play"){
 
         this.scene.start('main');
-
+        resize();
         //this.scene.start('main');
 
 

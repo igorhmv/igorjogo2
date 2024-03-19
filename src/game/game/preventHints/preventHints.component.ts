@@ -61,7 +61,7 @@ export class PreventHintsComponent extends Phaser.Scene implements OnInit {
 
     for(let i=0;i < this.hintsText.length;i++){
       this.hintsText[i].setFontFamily('Arial');
-      this.hintsText[i].setFontSize("20px");
+      this.hintsText[i].setFontSize("25px");
       console.log(this.scale.gameSize)
     }
 

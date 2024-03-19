@@ -77,18 +77,23 @@ export function resize() {
   console.log(container);
   if(container != null){
   if (window_ratio > game_ratio) {
+
   container.style.height = window.innerHeight + 'px'
+
   } else if (window_ratio < game_ratio) {
+
   container.style.width = window.innerWidth + 'px'
   container.style.height = window.innerHeight + 'px'
+
   }else{
-    container.style.height = window.innerHeight + 'px'
+    //container.style.height = window.innerHeight + 'px'
 
     //container.style.width = window.innerWidth + 'px'
     //container.style.height = window.innerHeight + 'px'
   }
   }
 }
+
 
 
 window.addEventListener('resize', resize)
@@ -140,8 +145,13 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   constructor(){
     super('app-game');
     //phaserGame= new Phaser.Game(config);
+
+
+
     this.game = phaserGame;
     phaserGame = this.phaserGame;
+
+
   }
 
   create() {

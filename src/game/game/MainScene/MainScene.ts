@@ -509,9 +509,13 @@ export class MainScene extends Phaser.Scene {
     this.add.existing(this.AlcoolBar);
 
 
-    this.add.text(20, 10, 'Saúde: ', { font: '30px Arial',color: '#FFFFFF' });
+    let hpText = this.add.text(20, 10, 'Saúde: ', { font: '30px Arial',color: '#FFFFFF' });
+    hpText.depth = 1;
     textAmmo = this.add.text(200, 10, 'Álcool: ', { font: '30px Arial',color: '#FFFFFF'  });
     textScore = this.add.text(350, 10, 'Pontuação: ', { font: '30px Arial',color: '#FFFFFF'  });
+
+    textAmmo.depth = 1;
+    textScore.depth=1;
 
     player = createPlayer(this);
     this.controls = createControls(this);
