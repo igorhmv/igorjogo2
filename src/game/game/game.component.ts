@@ -4,7 +4,7 @@ import { GameoverComponent } from './gameover/gameover.component';
 import { CreditsComponent } from './credits/credits.component';
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './../../app/app.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { MainScene } from 'src/game/game/MainScene/MainScene';
 
 import Phaser, { NONE, Scene } from 'phaser';
@@ -98,6 +98,14 @@ export function resize() {
 
 window.addEventListener('resize', resize)
 
+let context;
+window.onload = function() {
+    context = new AudioContext();
+
+}
+
+
+
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -105,6 +113,7 @@ window.addEventListener('resize', resize)
 })
 export class GameComponent extends Phaser.Scene implements OnInit {
 
+  music:any = null;
 
   public phaserGame:Phaser.Game =new Phaser.Game(config);
 
@@ -127,6 +136,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     //width=window.innerWidth*window.devicePixelRatio;
  // height=window.innerHeight* window.devicePixelRatio;
     //this.scale.setGameSize(width,height);
+
   }
 
 

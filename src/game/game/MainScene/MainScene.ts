@@ -2,8 +2,10 @@ import { phaserGame, width, height, scaleRatio } from './../game.component';
 
 import { booleanAttribute, destroyPlatform, numberAttribute } from '@angular/core';
 import { Collision } from 'matter';
-import Phaser, { GameObjects } from 'phaser';
+import Phaser, { GameObjects,Sound } from 'phaser';
 import { GameComponent } from '../game.component';
+
+var music:any = null;
 
 export var score = 0;
 export var bottles:Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[] = [];
@@ -76,6 +78,7 @@ var restartPlayer = (scene:Phaser.Scene)=> {
     playerStatus.alcoolAmmo = 10;
     score = 0;
     wave = 0;
+
 }
 
 
@@ -200,6 +203,7 @@ function updatePlayer(scene: Phaser.Scene,player:any,covids:any, a:any){
           playerStatus.health -= 1;
         }
       }else{
+        music.stop();
         scene.scene.stop('main').run('gameOver');
 
 
@@ -217,6 +221,7 @@ function updatePlayer(scene: Phaser.Scene,player:any,covids:any, a:any){
             playerStatus.health -= 1;
           }
         }else{
+          music.stop();
           scene.scene.stop('main').run('gameOver');
 
 
@@ -381,6 +386,18 @@ export class MainScene extends Phaser.Scene {
 
 
   create() {
+
+    // *true* param enables looping
+    music =this.sound.add('music');
+
+    //console.log(this.music);
+    music.loop = true;
+
+
+    music.play();
+
+    console.log(music);
+
 
 
     isDown = false;
@@ -554,6 +571,14 @@ export class MainScene extends Phaser.Scene {
     this.load.image('remedy','../../assets/remedio.png')
     this.cameras.main.setBackgroundColor('#114E94');
     this.scale.setGameSize(width,height);
+
+
+
+
+
+    this.load.audio('music','../../../assets/audio/medical.mp3');
+
+
   }
   override update() {
 
