@@ -102,31 +102,31 @@ const configControls = (
     player.setVelocityY(speed);
     playerStatus.side=down;
     //isDown=false;
-    return;
+    //return;
   }
   else if ((controls.up.isDown || isUp) && player.y > 0) {
     player.setVelocityY(-speed);
     playerStatus.side=up;
     //isUp=false;
-    return;
+    //return;
   }
 
   if ((controls.right.isDown || isRight) && player.x < width) {
     player.setVelocityX(speed);
     playerStatus.side=right;
     //isRight=false;
-    return;
+    //return;
   }
   else if ((controls.left.isDown || isLeft) && player.x > 0) {
     player.setVelocityX(-speed);
     playerStatus.side=left;
     //isLeft=false;
-    return;
+    //return;
   }
   if((controls.space.isDown || isAction)){
 
     attackA(scene,player,covids,alcoolSprays);
-    return;
+    //return;
   }else{
     playerStatus.attacking=false;
   }
