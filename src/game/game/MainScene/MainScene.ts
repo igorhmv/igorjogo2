@@ -118,8 +118,8 @@ const configControls = (
     playerStatus.side=down;
     //isDown=false;
     //return;
-    if(player.y >= screen.height){
-      player.y = screen.height
+    if(player.y >= 960){
+      player.y = 960
     }
   }
   else if ((controls.up.isDown || isUp) && player.y-speed >= 0
@@ -139,8 +139,8 @@ const configControls = (
     playerStatus.side=right;
     //isRight=false;
     //return;
-    if(player.x >= screen.width){
-      player.x = screen.width
+    if(player.x >= 540){
+      player.x = 540
     }
   }
   else if ((controls.left.isDown || isLeft) && player.x-speed >= 0
