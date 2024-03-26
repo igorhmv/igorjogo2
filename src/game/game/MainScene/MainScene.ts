@@ -43,7 +43,7 @@ var playerStatus = {
   alcoolAmmo: 10
 }
 
-var virusSpd = 50;
+var virusSpd = 20;
 
 const createControls = (
   scene: Phaser.Scene
@@ -427,20 +427,20 @@ export class MainScene extends Phaser.Scene {
     actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
 
 
-    //downArrow.on('pointerdown', () => { isDown = true; });
-    //downArrow.on('pointerup', () => { isDown = false; });
+    downArrow.on('pointerdown', () => { if(!isUp){isDown = true;} });
+    downArrow.on('pointerup', () => { isDown = false;});
 
-    //upArrow.on('pointerdown', () => { isUp = true; });
-    //upArrow.on('pointerup', () => { isUp = false; });
+    upArrow.on('pointerdown', () => { if(!isDown){isUp = true; }});
+    upArrow.on('pointerup', () => { isUp = false; });
 
-    //leftArrow.on('pointerdown', () => { isLeft = true; });
-    //leftArrow.on('pointerup', () => { isLeft = false; });
+    leftArrow.on('pointerdown', () => { if(!isRight){isLeft = true; }});
+    leftArrow.on('pointerup', () => { isLeft = false; });
 
-    //rightArrow.on('pointerdown', () => { isRight = true; });
-    //rightArrow.on('pointerup', () => { isRight = false; });
+    rightArrow.on('pointerdown', () => { if(!isLeft){isRight = true;} });
+    rightArrow.on('pointerup', () => { isRight = false; });
 
-    //actionButton.on('pointerdown', () => { isAction = true; });
-    //actionButton.on('pointerup', () => { isAction = false; });
+    actionButton.on('pointerdown', () => { isAction = true; });
+    actionButton.on('pointerup', () => { isAction = false; });
 
 
 
@@ -453,7 +453,7 @@ export class MainScene extends Phaser.Scene {
 
     //this.input.setTopOnly(false)
 
-
+/*
     this.input
    //.setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
   .on('pointerdown', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
@@ -516,7 +516,7 @@ export class MainScene extends Phaser.Scene {
         isAction=false;
       }
     }
-    })
+    })*/
 
     this.healthBarBorder= new Phaser.GameObjects.Graphics(this);
     this.healthBarBorder.x = 8;
