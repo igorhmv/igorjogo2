@@ -111,15 +111,15 @@ const configControls = (
   alcoolSprays:any[]
 ): void => {
   player.setVelocity(0);
-  if ((controls.down.isDown || ( isDown)) && player.y+speed <= 960
+  if ((controls.down.isDown || ( isDown)) && player.y+speed <= height
   ) {
 
     player.setVelocityY(speed);
     playerStatus.side=down;
     //isDown=false;
     //return;
-    if(player.y >= 960){
-      player.y = 960
+    if(player.y >= height){
+      player.y = height
     }
   }
   else if ((controls.up.isDown || isUp) && player.y-speed >= 0
@@ -133,14 +133,14 @@ const configControls = (
     }
   }
 
-  if ((controls.right.isDown || isRight) && player.x+speed <= 540
+  if ((controls.right.isDown || isRight) && player.x+speed <= width
   ) {
     player.setVelocityX(speed);
     playerStatus.side=right;
     //isRight=false;
     //return;
-    if(player.x >= 540){
-      player.x = 540
+    if(player.x >= width){
+      player.x = width
     }
   }
   else if ((controls.left.isDown || isLeft) && player.x-speed >= 0
