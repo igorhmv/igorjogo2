@@ -553,6 +553,7 @@ export class MainScene extends Phaser.Scene {
 
     player = createPlayer(this);
     this.controls = createControls(this);
+    createControls2(this);
     covids = loadFirstViruses(this);
 
 
