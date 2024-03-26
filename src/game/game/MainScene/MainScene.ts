@@ -413,20 +413,20 @@ export class MainScene extends Phaser.Scene {
     actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
 
 
-    downArrow.on('pointerdown', () => { isDown = true; });
-    downArrow.on('pointerup', () => { isDown = false; });
+    //downArrow.on('pointerdown', () => { isDown = true; });
+    //downArrow.on('pointerup', () => { isDown = false; });
 
-    upArrow.on('pointerdown', () => { isUp = true; });
-    upArrow.on('pointerup', () => { isUp = false; });
+    //upArrow.on('pointerdown', () => { isUp = true; });
+    //upArrow.on('pointerup', () => { isUp = false; });
 
-    leftArrow.on('pointerdown', () => { isLeft = true; });
-    leftArrow.on('pointerup', () => { isLeft = false; });
+    //leftArrow.on('pointerdown', () => { isLeft = true; });
+    //leftArrow.on('pointerup', () => { isLeft = false; });
 
-    rightArrow.on('pointerdown', () => { isRight = true; });
-    rightArrow.on('pointerup', () => { isRight = false; });
+    //rightArrow.on('pointerdown', () => { isRight = true; });
+    //rightArrow.on('pointerup', () => { isRight = false; });
 
-    actionButton.on('pointerdown', () => { isAction = true; });
-    actionButton.on('pointerup', () => { isAction = false; });
+    //actionButton.on('pointerdown', () => { isAction = true; });
+    //actionButton.on('pointerup', () => { isAction = false; });
 
 
 
@@ -437,50 +437,50 @@ export class MainScene extends Phaser.Scene {
     rightArrow.depth=1;
     actionButton.depth=1;
 
-    this.input.setTopOnly(false)
+    //this.input.setTopOnly(false)
 
-    /*
+
     this.input
    //.setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
   .on('pointerdown', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
     for(let o of objectsClicked){
       if(o.name == "up"){
         isUp=true;
-        return;
-      }else{
-        isUp=false;
-      }
+       // return;
+      }//else{
+        //isUp=false;
+      //}
       if(o.name == "down"){
         isDown=true;
-        return;
-      }else{
-        isDown=false;
-      }
+        //return;
+      }//else{
+        //isDown=false;
+      //}
       if(o.name == "left"){
         isLeft=true;
-        return;
-      }else{
-        isLeft=false;
-      }
+        //return;
+      }//else{
+        //isLeft=false;
+      //}
 
       if(o.name == "right"){
         isRight=true;
-        return;
-      }else{
-       isRight=false;
-      }
+        //return;
+      }//else{
+       //isRight=false;
+      //}
 
-     // if(o.name == "action"){
-      //  isAction=true;
-      //  return;
-     // }//else{
+      if(o.name == "action"){
+        isAction=true;
+
+      }//else{
         //isAction=false;
       //}
     }
-    })*/
+    })
 
-  // .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
-    /*
+   .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
+
   .on('pointerup', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
     for(let o of objectsClicked){
       if(o.name == "up"){
@@ -502,7 +502,7 @@ export class MainScene extends Phaser.Scene {
         isAction=false;
       }
     }
-    })*/
+    })
 
     this.healthBarBorder= new Phaser.GameObjects.Graphics(this);
     this.healthBarBorder.x = 8;
