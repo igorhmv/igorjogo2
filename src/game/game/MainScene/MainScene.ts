@@ -436,6 +436,9 @@ export class MainScene extends Phaser.Scene {
     leftArrow.depth=1;
     rightArrow.depth=1;
     actionButton.depth=1;
+
+    this.input.setTopOnly(false)
+
     /*
     this.input
    //.setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
