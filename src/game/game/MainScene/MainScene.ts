@@ -54,6 +54,20 @@ const createControls = (
   return controls;
 };
 
+const createControls2 = (
+  scene: Phaser.Scene
+)/*: Phaser.Input.Touch.TouchManager*/ => {
+
+  scene.input.addPointer();
+  scene.input.addPointer();
+  scene.input.addPointer();
+  scene.input.addPointer();
+  scene.input.addPointer();
+  scene.input.addPointer();
+  scene.input.addPointer();
+  //return controls;
+};
+
 
 
 const loadFirstViruses = (
