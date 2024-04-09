@@ -11,6 +11,9 @@ import Phaser, { NONE, Scene } from 'phaser';
 import { RulesComponent } from './rules/rules.component';
 import { DOCUMENT } from '@angular/common';
 
+
+
+
 // Aspect Ratio 16:9 - Portrait
 const MAX_SIZE_WIDTH_SCREEN = 1920
 const MAX_SIZE_HEIGHT_SCREEN = 1080
