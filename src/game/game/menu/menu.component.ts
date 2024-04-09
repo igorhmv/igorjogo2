@@ -105,7 +105,7 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
       if(o.name == "play"){
 
         this.scene.start('main');
-        resize();
+        //resize();
         //this.scene.start('main');
 
 

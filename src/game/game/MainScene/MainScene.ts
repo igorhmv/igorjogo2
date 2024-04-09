@@ -1,4 +1,4 @@
-import { phaserGame, width, height, scaleRatio } from './../game.component';
+import { phaserGame, width, height, scaleRatio, resize } from './../game.component';
 
 import { booleanAttribute, destroyPlatform, numberAttribute } from '@angular/core';
 import { Collision } from 'matter';
@@ -60,11 +60,11 @@ const createControls2 = (
 
   scene.input.addPointer();
   scene.input.addPointer();
-  scene.input.addPointer();
-  scene.input.addPointer();
-  scene.input.addPointer();
-  scene.input.addPointer();
-  scene.input.addPointer();
+  //scene.input.addPointer();
+ // scene.input.addPointer();
+  //scene.input.addPointer();
+  //scene.input.addPointer();
+  //scene.input.addPointer();
   //return controls;
 };
 
@@ -115,6 +115,7 @@ const configControls = (
   ) {
 
     player.setVelocityY(speed);
+
     playerStatus.side=down;
     //isDown=false;
     //return;
@@ -125,6 +126,7 @@ const configControls = (
   else if ((controls.up.isDown || isUp) && player.y-speed >= 0
   ) {
     player.setVelocityY(-speed);
+
     playerStatus.side=up;
     //isUp=false;
     //return;
@@ -133,7 +135,7 @@ const configControls = (
     }
   }
 
-  if ((controls.right.isDown || isRight) && player.x+speed <= width
+  else if ((controls.right.isDown || isRight) && player.x+speed <= width
   ) {
     player.setVelocityX(speed);
     playerStatus.side=right;
@@ -160,6 +162,10 @@ const configControls = (
   }else{
     playerStatus.attacking=false;
   }
+
+
+
+
 };
 
 const attackA = (game:Phaser.Scene,player:Phaser.Types.Physics.Arcade.SpriteWithDynamicBody,
@@ -443,16 +449,34 @@ export class MainScene extends Phaser.Scene {
     actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
 
 
-    downArrow.on('pointerdown', () => { if(!isUp){isDown = true;} });
+    downArrow.on('pointerdown', () => {
+      /*if(!isUp){*/
+    isDown = true;
+  //}
+}
+  );
     downArrow.on('pointerup', () => { isDown = false;});
 
-    upArrow.on('pointerdown', () => { if(!isDown){isUp = true; }});
+    upArrow.on('pointerdown', () => {
+      //if(!isDown){
+      isUp = true;
+    //}
+  }
+    );
     upArrow.on('pointerup', () => { isUp = false; });
 
-    leftArrow.on('pointerdown', () => { if(!isRight){isLeft = true; }});
-    leftArrow.on('pointerup', () => { isLeft = false; });
+    leftArrow.on('pointerdown', () => {// if(!isRight){
+      isLeft = true; }
+    //}
+    );
+    leftArrow.on('pointerup', () => {
+      isLeft = false;
+     });
 
-    rightArrow.on('pointerdown', () => { if(!isLeft){isRight = true;} });
+    rightArrow.on('pointerdown', () => { //if(!isLeft){
+      isRight = true;}
+     //}
+     );
     rightArrow.on('pointerup', () => { isRight = false; });
 
     actionButton.on('pointerdown', () => { isAction = true; });
@@ -581,6 +605,8 @@ export class MainScene extends Phaser.Scene {
     timer = this.time.delayedCall(3000, this.addVariant, [], this);
   }
   preload() {
+
+
     this.load.image('up','../../../assets/actionbuttons/upArrow.png');
     this.load.image('down','../../../assets/actionbuttons/downArrow.png');
     this.load.image('left','../../../assets/actionbuttons/leftArrow.png');
@@ -615,9 +641,9 @@ export class MainScene extends Phaser.Scene {
 
   }
   override update() {
-
+    //resize();
     //phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
-
+    this.scale.gameSize.resize(screen.width,screen.height);
     configControls(player, this.controls, this, this.playerSpeed,covids,alcoolSprays);
     updatePlayer(this,player,covids,alcoolSprays);
     updateViruses(this,player,covids,alcoolSprays);

@@ -34,8 +34,8 @@ export var scaleRatio = window.devicePixelRatio / 3;
 config= {
 
   type: Phaser.CANVAS,
-  height: SIZE_HEIGHT_SCREEN,//window.innerHeight* window.devicePixelRatio,
-  width:SIZE_WIDTH_SCREEN, //window.innerWidth* window.devicePixelRatio,
+ height: SIZE_HEIGHT_SCREEN,//window.innerHeight* window.devicePixelRatio,
+  width:SIZE_WIDTH_SCREEN,//window.innerWidth* window.devicePixelRatio,
 
   scene: [MenuComponent,RulesComponent,CreditsComponent,CovidBookComponent,PreventHintsComponent,MainScene,GameoverComponent],
   parent: 'game',
@@ -49,10 +49,10 @@ config= {
   backgroundColor: '#FFFFFF',
 
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.FIT,//Phaser.Scale.FIT,
     parent: 'game',
-    height: SIZE_HEIGHT_SCREEN,
-    width: SIZE_WIDTH_SCREEN,
+    height: SIZE_HEIGHT_SCREEN,//SIZE_HEIGHT_SCREEN,
+    width: SIZE_WIDTH_SCREEN,//SIZE_WIDTH_SCREEN,
 
 
     min: {
@@ -66,6 +66,7 @@ config= {
     autoCenter: Phaser.Scale.CENTER_BOTH
 
 },
+
 };
 
 export var phaserGame:Phaser.Game//= new Phaser.Game(config);
@@ -74,16 +75,17 @@ export function resize() {
   let game_ratio = 540 / 960
   let window_ratio = window.innerWidth / window.innerHeight
   let container = phaserGame.canvas;
-  console.log(container);
+  console.log(screen.width + ' x '+screen.height);
   if(container != null){
-  if (window_ratio > game_ratio) {
 
-  container.style.height = window.innerHeight + 'px'
+  if (window_ratio > game_ratio) {
+    //container.style.width = window.innerWidth* window.devicePixelRatio + 'px'
+  container.style.height = window.innerHeight* window.devicePixelRatio + 'px'
 
   } else if (window_ratio < game_ratio) {
 
-  container.style.width = window.innerWidth + 'px'
-  container.style.height = window.innerHeight + 'px'
+  container.style.width = window.innerWidth* window.devicePixelRatio + 'px'
+  //container.style.height = window.innerHeight* window.devicePixelRatio + 'px'
 
   }else{
     //container.style.height = window.innerHeight + 'px'
@@ -91,6 +93,29 @@ export function resize() {
     //container.style.width = window.innerWidth + 'px'
     //container.style.height = window.innerHeight + 'px'
   }
+  /*
+  if(phaserGame.scale.isGamePortrait){
+    console.log('portrait'+ phaserGame.renderer.width.toString()+'x'+phaserGame.renderer.height.toString());
+    //phaserGame.canvas.style.width=screen.width.toString()//screen.width + 'px'
+    //phaserGame.canvas.style.height=screen.height.toString()//screen.height + 'px'
+    //phaserGame.scale.resize(1,1);
+
+
+    //phaserGame.renderer.resize(window.innerWidth* window.devicePixelRatio,window.innerHeight* window.devicePixelRatio);
+phaserGame.renderer.resize(screen.width,screen.height);
+
+    console.log('portrait'+ phaserGame.renderer.width.toString()+'x'+phaserGame.renderer.height.toString());
+  }else{
+    console.log('no portrait'+ phaserGame.renderer.width.toString()+'x'+phaserGame.renderer.height.toString());
+    //phaserGame.canvas.style.width=screen.width.toString()//screen.width + 'px'
+    //phaserGame.canvas.style.height=screen.height.toString()//screen.height + 'px'
+    //phaserGame.scale.resize(1,1);
+    //phaserGame.renderer.resize(window.innerWidth* window.devicePixelRatio,window.innerHeight* window.devicePixelRatio);
+   phaserGame.renderer.resize(screen.width,screen.height);
+
+   console.log('no portrait'+ phaserGame.renderer.width.toString()+'x'+phaserGame.renderer.height.toString());
+  }
+*/
   }
 }
 
@@ -124,19 +149,22 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     //resize();
 
 
-    //width=window.innerHeight//* window.devicePixelRatio;
-  //height=window.innerHeight//* window.devicePixelRatio;
+    //width=window.innerHeight* window.devicePixelRatio;
+  //height=window.innerHeight* window.devicePixelRatio;
 
     //scaleRatio = window.devicePixelRatio / 3;
-
+    //phaserGame.scale.displaySize.setAspectRatio( width/height );
+    //phaserGame.scale.refresh();
 
   }
 
   preload(){
-    //width=window.innerWidth*window.devicePixelRatio;
- // height=window.innerHeight* window.devicePixelRatio;
+    width=window.innerWidth*window.devicePixelRatio;
+  height=window.innerHeight* window.devicePixelRatio;
+  scaleRatio = window.devicePixelRatio / 3;
     //this.scale.setGameSize(width,height);
-
+    //phaserGame.scale.setGameSize(screen.width,screen.height);
+    //resize();
   }
 
 
@@ -161,6 +189,16 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     this.game = phaserGame;
     phaserGame = this.phaserGame;
 
+    //resize();
+
+    //phaserGame.canvas.onresize=resize;
+
+    //width=window.innerHeight* window.devicePixelRatio;
+    //height=window.innerHeight* window.devicePixelRatio;
+
+      //scaleRatio = window.devicePixelRatio / 3;
+      //phaserGame.scale.displaySize.setAspectRatio( width/height );
+      //phaserGame.scale.refresh();
 
   }
 
