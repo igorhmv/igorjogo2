@@ -12,6 +12,9 @@ import { RulesComponent } from './rules/rules.component';
 import { DOCUMENT } from '@angular/common';
 
 
+import { ScreenOrientation } from '@capacitor/screen-orientation';
+
+
 
 
 // Aspect Ratio 16:9 - Portrait
@@ -148,7 +151,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   static worldWidth = 0
 
   override update() {
-
+    this.lockOrientation();
     //resize();
 
 
@@ -171,7 +174,9 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   }
 
 
-
+  async lockOrientation(){
+    await ScreenOrientation.lock({ orientation: 'portrait' });
+  }
 
 
   ngOnInit() {
@@ -179,6 +184,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     //height=window.innerHeight* window.devicePixelRatio;
     //width=window.innerHeight* window.devicePixelRatio;
   //height=window.innerHeight* window.devicePixelRatio;
+    this.lockOrientation();
   }
 
   initialize: boolean = true;
