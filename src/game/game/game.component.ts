@@ -17,6 +17,7 @@ import { ScreenOrientation } from '@capacitor/screen-orientation';
 
 
 
+
 // Aspect Ratio 16:9 - Portrait
 const MAX_SIZE_WIDTH_SCREEN = 1920
 const MAX_SIZE_HEIGHT_SCREEN = 1080
@@ -165,6 +166,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   }
 
   preload(){
+    this.lockOrientation();
     width=window.innerWidth*window.devicePixelRatio;
   height=window.innerHeight* window.devicePixelRatio;
   scaleRatio = window.devicePixelRatio / 3;
@@ -175,7 +177,17 @@ export class GameComponent extends Phaser.Scene implements OnInit {
 
 
   async lockOrientation(){
-    await ScreenOrientation.lock({ orientation: 'portrait' });
+
+
+
+    await ScreenOrientation.lock({ orientation: 'portrait' }).then(() => {
+      //log.textContent = `Locked to ${oppositeOrientation}\n`;
+      console.log('orientation: '+window.screen.orientation.toString());
+    })
+    .catch((error) => {
+      //log.textContent += `${error}\n`;
+      console.log('error: '+error.toString());
+    });
   }
 
 
@@ -192,6 +204,7 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   constructor(){
     super('app-game');
     //phaserGame= new Phaser.Game(config);
+    this.lockOrientation();
 
 
 
