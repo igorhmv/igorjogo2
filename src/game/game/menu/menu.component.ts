@@ -134,7 +134,7 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
     //console.log(phaserGame.scale.width + " x "+phaserGame.scale.height );
 
 
-    phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
+    //phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
 
 
 
