@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import Phaser from 'phaser';
 
-import {width, height } from './../game.component';
+import {phaserGame,width, height } from './../game.component';
 
 @Component({
   selector: 'app-credits',
@@ -25,9 +25,18 @@ export class CreditsComponent extends Phaser.Scene implements OnInit {
   }
 
   create(){
-    this.add.text(width/2-100, 10, 'Créditos', { font: '50px Arial',color:'#000000' });
-    this.add.text(width/2-400, 100, 'Criado por Igor Giusti Cardona Alves no Hospital Moinhos de Vento', { font: '25px Arial',color:'#000000' });
-    this.backIcon = this.add.image(width/2,200,'back').setName("back").setInteractive();
+
+    if(phaserGame.scale.width > 500){
+
+    this.add.text(phaserGame.scale.width/2-100, 10, 'Créditos', { font: '50px Arial',color:'#000000' });
+    this.add.text(phaserGame.scale.width/2-400, 100, 'Criado por Igor Giusti Cardona Alves no Hospital Moinhos de Vento', { font: '25px Arial',color:'#000000' });
+    this.backIcon = this.add.image(phaserGame.scale.width/2,200,'back').setName("back").setInteractive();
+
+    }else{
+      this.add.text(phaserGame.scale.width/2-100, phaserGame.scale.height/8, 'Créditos', { font: '50px Arial',color:'#000000' });
+      this.add.text(phaserGame.scale.width/2-150, phaserGame.scale.height/4, 'Criado por Igor Giusti\nCardona Alves no Hospital\nMoinhos de Vento', { font: '25px Arial',color:'#000000' });
+      this.backIcon = this.add.image(phaserGame.scale.width/2,phaserGame.scale.height/2,'back').setName("back").setInteractive();
+    }
 
     this.input
   // .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked

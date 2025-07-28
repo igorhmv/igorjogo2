@@ -21,10 +21,10 @@ import { ScreenOrientation } from '@capacitor/screen-orientation';
 // Aspect Ratio 16:9 - Portrait
 const MAX_SIZE_WIDTH_SCREEN = 1920
 const MAX_SIZE_HEIGHT_SCREEN = 1080
-const MIN_SIZE_WIDTH_SCREEN =270
-const MIN_SIZE_HEIGHT_SCREEN = 480
-const SIZE_WIDTH_SCREEN = 540
-const SIZE_HEIGHT_SCREEN = 960
+const MIN_SIZE_WIDTH_SCREEN =412//270
+const MIN_SIZE_HEIGHT_SCREEN = 732//480
+const SIZE_WIDTH_SCREEN = window.innerWidth* window.devicePixelRatio
+const SIZE_HEIGHT_SCREEN = window.innerHeight* window.devicePixelRatio
 
 export var config: Phaser.Types.Core.GameConfig
 
@@ -56,7 +56,7 @@ config= {
   backgroundColor: '#FFFFFF',
 
   scale: {
-    mode: Phaser.Scale.FIT,//Phaser.Scale.FIT,
+    mode: Phaser.Scale.RESIZE,//Phaser.Scale.FIT,
     parent: 'game',
     height: SIZE_HEIGHT_SCREEN,//SIZE_HEIGHT_SCREEN,
     width: SIZE_WIDTH_SCREEN,//SIZE_WIDTH_SCREEN,
@@ -126,7 +126,28 @@ phaserGame.renderer.resize(screen.width,screen.height);
   }
 }
 
+const onChangeScreen = () => {
+  phaserGame.scale.resize(window.innerWidth, window.innerHeight);
+  if (phaserGame.scene.scenes.length > 0) {
+      let currentScene = phaserGame.scene.scenes[0];
 
+      if (currentScene instanceof MenuComponent) {
+        currentScene.resize();
+     }
+      //else if (currentScene instanceof GameComponent) {
+
+      //}
+  }
+}
+
+const _orientation = screen.orientation || (screen as any).mozOrientation || (screen as any).msOrientation;
+_orientation.addEventListener('change', () => {
+  onChangeScreen();
+});
+
+window.addEventListener('resize', () => {
+  onChangeScreen();
+});
 
 window.addEventListener('resize', resize)
 
@@ -168,11 +189,13 @@ export class GameComponent extends Phaser.Scene implements OnInit {
   preload(){
     this.lockOrientation();
     width=window.innerWidth*window.devicePixelRatio;
-  height=window.innerHeight* window.devicePixelRatio;
-  scaleRatio = window.devicePixelRatio / 3;
+    height=window.innerHeight* window.devicePixelRatio;
+  //scaleRatio = window.devicePixelRatio / 3;
+    scaleRatio = phaserGame.scale.width * phaserGame.scale.height /3;
     //this.scale.setGameSize(width,height);
     //phaserGame.scale.setGameSize(screen.width,screen.height);
     //resize();
+
   }
 
 
@@ -231,8 +254,8 @@ export class GameComponent extends Phaser.Scene implements OnInit {
     //height=window.innerHeight* window.devicePixelRatio;
     //width=window.innerHeight* window.devicePixelRatio;
   //height=window.innerHeight* window.devicePixelRatio;
-  }
 
+  }
 
    getGame(): Phaser.Game
   {return this.phaserGame;}

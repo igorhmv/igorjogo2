@@ -36,10 +36,10 @@ export class GameoverComponent extends Phaser.Scene implements OnInit {
   }
 
   create(){
-    this.add.text(width/2-200, 10, 'Fim de Jogo', { font: '50px Arial',color:'#000000' });
-    this.add.text(width/2-200, 100, 'Pontuação: '+MainScene.getScore().toString(), { font: '30px Arial',color:'#000000' });
-    this.tryAgainIcon = this.add.image(width/2,200,'tryAgain').setName("tryAgain").setInteractive();
-    this.giveUpIcon = this.add.image(width/2,400,'giveUp').setName("giveUp").setInteractive();
+    this.add.text(phaserGame.scale.width/2-200, 10, 'Fim de Jogo', { font: '50px Arial',color:'#000000' });
+    this.add.text(phaserGame.scale.width/2-200, 100, 'Pontuação: '+MainScene.getScore().toString(), { font: '30px Arial',color:'#000000' });
+    this.tryAgainIcon = this.add.image(phaserGame.scale.width/2,200,'tryAgain').setName("tryAgain").setInteractive();
+    this.giveUpIcon = this.add.image(phaserGame.scale.width/2,400,'giveUp').setName("giveUp").setInteractive();
 
     this.input
   // .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked

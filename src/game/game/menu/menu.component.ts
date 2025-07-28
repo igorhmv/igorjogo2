@@ -42,6 +42,8 @@ const createControls = (
 
 export class MenuComponent extends Phaser.Scene implements OnInit  {
 
+
+
   initialize = () => {
     Phaser.Scene.call(this, { "key": "menu" });
   }
@@ -53,6 +55,9 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
 
 
   }
+
+
+  textTitle: Phaser.GameObjects.Text | undefined
   playIcon:Phaser.GameObjects.Image | undefined;
   rulesIcon:Phaser.GameObjects.Image | undefined;
   creditsIcon:Phaser.GameObjects.Image | undefined;
@@ -63,6 +68,9 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
 
   }
   preload(){
+
+
+
     this.load.image('play','../../../assets/icon/PlayIcon.png');
     this.load.image('rules','../../../assets/icon/RulesIcon.png');
     this.load.image('credits','../../../assets/icon/CreditsIcon.png');
@@ -71,11 +79,12 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
 
    //var widthX=window.innerWidth*window.devicePixelRatio;
 //var heightX=window.innerHeight* window.devicePixelRatio;
-    this.scale.setGameSize(width,height);
+    //this.scale.setGameSize(width,height);
   }
 
   create(){
-
+    //this.scene.start("MenuComponent");
+    //this.scene.remove("LoadingScene");
 
     this.controls = createControls(this);
     /*
@@ -84,19 +93,43 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
       loop: false,
 
   });*/
-  this.add.text((width/2-250), 50, 'Ataque do COVID no\nHospital dos Moinhos', { font: '50px Arial',color:'#000000',align:'center', });
-  this.playIcon = this.add.image((width/2),200,'play').setName("play").setInteractive();
-  this.rulesIcon = this.add.image((width/2),300,'rules').setName("rules").setInteractive();
-  this.creditsIcon = this.add.image((width/2),400,'credits').setName("credits").setInteractive();
-  this.covidBookIcon = this.add.image((width/2),500,'covidBook').setName("covidBook").setInteractive();
-  this.preventHintsIcon = this.add.image((width/2),600,'preventHints').setName("preventHints").setInteractive();
+  console.log(phaserGame.scale.width);
+  const fontSize = Math.round(phaserGame.scale.height * 0.025);
+
+  this.textTitle = this.add.text((phaserGame.scale.width-125)/2, (phaserGame.scale.height)/8, 'Ataque do COVID no\nHospital dos Moinhos', { font: `${fontSize}px`,color:'#000000',align:'center', });
+
+  this.textTitle.setStyle( { font: `${fontSize}px`,color:'#000000',align:'center', })
+    .setFontSize(`${fontSize}px Arial`)
+    //.setScale(scaleRatio*0.05,scaleRatio*0.05)
+    .setPosition((phaserGame.scale.width)/2-this.textTitle.width/2, (phaserGame.scale.height/8-this.textTitle.height/2))
+    //.setSize(phaserGame.scale.width/3,phaserGame.scale.height/3)
+
+
+  this.playIcon = this.add.image((phaserGame.scale.width/2),phaserGame.scale.height/4,'play').setName("play").setInteractive();
+  this.rulesIcon = this.add.image((phaserGame.scale.width/2),phaserGame.scale.height*3/8,'rules').setName("rules").setInteractive();
+  this.creditsIcon = this.add.image((phaserGame.scale.width/2),phaserGame.scale.height/2,'credits').setName("credits").setInteractive();
+  this.covidBookIcon = this.add.image((phaserGame.scale.width/2),phaserGame.scale.height*5/8,'covidBook').setName("covidBook").setInteractive();
+  this.preventHintsIcon = this.add.image((phaserGame.scale.width/2),phaserGame.scale.height*6/8,'preventHints').setName("preventHints").setInteractive();
+
+
+  //this.textTitle.setScale(scaleRatio*0.05,scaleRatio*0.05)
+
+  if(phaserGame.scale.width > 500){
+
+
 
   this.playIcon.setScale(scaleRatio*2,scaleRatio*2);
   this.rulesIcon.setScale(scaleRatio*2,scaleRatio*2);
   this.creditsIcon.setScale(scaleRatio*2,scaleRatio*2);
   this.covidBookIcon.setScale(scaleRatio*2,scaleRatio*2);
   this.preventHintsIcon.setScale(scaleRatio*2,scaleRatio*2);
-
+  }else{
+    this.playIcon.setScale(scaleRatio,scaleRatio);
+  this.rulesIcon.setScale(scaleRatio,scaleRatio);
+  this.creditsIcon.setScale(scaleRatio,scaleRatio);
+  this.covidBookIcon.setScale(scaleRatio,scaleRatio);
+  this.preventHintsIcon.setScale(scaleRatio,scaleRatio);
+  }
 
   this.input
   // .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
@@ -120,7 +153,7 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
       }
     }
 
-
+    console.log(this.textTitle);
   });
 
 
@@ -136,10 +169,30 @@ export class MenuComponent extends Phaser.Scene implements OnInit  {
 
     //phaserGame.scale.gameSize.resize(window.innerWidth,window.innerHeight);
 
+    const fontSize = Math.round(phaserGame.scale.height * 0.025);
 
+    this.textTitle?.setText('Ataque do COVID no\nHospital dos Moinhos').setStyle( { font: `${fontSize}px`,color:'#000000',align:'center', })
+    .setFontSize(`${fontSize}px Arial`)
+    //.setScale(scaleRatio*2,scaleRatio*2)
+    .setPosition((phaserGame.scale.width)/2-this.textTitle.width/2, (phaserGame.scale.height/8-this.textTitle.height/2))
+    //.setSize(phaserGame.scale.width,phaserGame.scale.height)
+    ;
 
     configControls(this.controls,this);
 
 
   }
+
+
+
+  resize(){
+    //this.textTitle?.setPosition(phaserGame.scale.width/2-250 * scaleRatio, this.getTitleTextY());
+    //this.textTitle?.setFontSize(this.getScaleY());
+    //this.playIcon;
+    //this.rulesIcon;
+    //this.creditsIcon;
+    //this.covidBookIcon;
+    //this.preventHintsIcon;
+  }
+
 }

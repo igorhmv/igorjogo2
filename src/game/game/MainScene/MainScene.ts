@@ -1,6 +1,6 @@
 import { phaserGame, width, height, scaleRatio, resize } from './../game.component';
 
-import { booleanAttribute, destroyPlatform, numberAttribute } from '@angular/core';
+import { booleanAttribute, destroyPlatform, numberAttribute, OnInit } from '@angular/core';
 import { Collision } from 'matter';
 import Phaser, { GameObjects,Sound } from 'phaser';
 import { GameComponent } from '../game.component';
@@ -75,13 +75,13 @@ const loadFirstViruses = (
 ) => {
 
   var covids:Phaser.Types.Physics.Arcade.SpriteWithDynamicBody[] = [];
-  let a=scene.physics.add.sprite(200,200, "covid").setScale(0.5,0.5);
+  let a=scene.physics.add.sprite((phaserGame.scale.width/4),(phaserGame.scale.height/4), "covid").setScale(0.5,0.5);
   covids.push(a);
-  a=scene.physics.add.sprite((width-200),200, "covid").setScale(0.5,0.5);
+  a=scene.physics.add.sprite((phaserGame.scale.width/4),phaserGame.scale.height*3/4, "covid").setScale(0.5,0.5);
   covids.push(a);
-  a=scene.physics.add.sprite(200,(height-200), "covid").setScale(0.5,0.5)
+  a=scene.physics.add.sprite(phaserGame.scale.width*3/4,(phaserGame.scale.height/4), "covid").setScale(0.5,0.5)
   covids.push(a);
-  a=scene.physics.add.sprite((width-200),(height-200), "covid").setScale(0.5,0.5)
+  a=scene.physics.add.sprite((phaserGame.scale.width*3/4),(phaserGame.scale.height*3/4), "covid").setScale(0.5,0.5)
   covids.push(a);
 
   return covids;
@@ -98,7 +98,7 @@ var restartPlayer = (scene:Phaser.Scene)=> {
 
 
 var createPlayer = (scene: Phaser.Scene) => {
-  var player = scene.physics.add.sprite(width/2,height/2, "medic");//.setScale(2,2);
+  var player = scene.physics.add.sprite(phaserGame.scale.width/2,phaserGame.scale.height/2, "medic");//.setScale(2,2);
   return player;
 }
 
@@ -111,7 +111,7 @@ const configControls = (
   alcoolSprays:any[]
 ): void => {
   player.setVelocity(0);
-  if ((controls.down.isDown || ( isDown)) && player.y+speed <= height
+  if ((controls.down.isDown || ( isDown)) && player.y+speed <= phaserGame.scale.height
   ) {
 
     player.setVelocityY(speed);
@@ -119,8 +119,8 @@ const configControls = (
     playerStatus.side=down;
     //isDown=false;
     //return;
-    if(player.y >= height){
-      player.y = height
+    if(player.y >= phaserGame.scale.height){
+      player.y = phaserGame.scale.height
     }
   }
   else if ((controls.up.isDown || isUp) && player.y-speed >= 0
@@ -135,14 +135,14 @@ const configControls = (
     }
   }
 
-  else if ((controls.right.isDown || isRight) && player.x+speed <= width
+  else if ((controls.right.isDown || isRight) && player.x+speed <= phaserGame.scale.width
   ) {
     player.setVelocityX(speed);
     playerStatus.side=right;
     //isRight=false;
     //return;
-    if(player.x >= width){
-      player.x = width
+    if(player.x >= phaserGame.scale.width){
+      player.x = phaserGame.scale.width
     }
   }
   else if ((controls.left.isDown || isLeft) && player.x-speed >= 0
@@ -185,13 +185,13 @@ const attackA = (game:Phaser.Scene,player:Phaser.Types.Physics.Arcade.SpriteWith
 
       var deltaX = 0;
       var deltaY = 0;
-      if(player.x < width/2){
+      if(player.x < phaserGame.scale.width/2){
         deltaX = 100;
 
       }else{
         deltaX = -100;
       }
-      if(player.y < height/2){
+      if(player.y < phaserGame.scale.height/2){
         deltaY = 100;
 
       }else{
@@ -401,7 +401,7 @@ function drawUI(scene: Phaser.Scene,player:any,healthBarBorder:Phaser.GameObject
   AlcoolBar.fillRect(AlcoolBar.x, AlcoolBar.y + 2, playerStatus.alcoolAmmo*10, 30 );
 }
 
-export class MainScene extends Phaser.Scene {
+export class MainScene extends Phaser.Scene{
 
   playerSpeed = 100;
 
@@ -421,6 +421,7 @@ export class MainScene extends Phaser.Scene {
 
 
 
+
   create() {
 
     // *true* param enables looping
@@ -432,7 +433,7 @@ export class MainScene extends Phaser.Scene {
 
     music.play();
 
-    console.log(music);
+    console.log(phaserGame.scale.width);
 
 
 
@@ -442,12 +443,19 @@ export class MainScene extends Phaser.Scene {
     isRight=false;
     isAction=false;
 
+    if(phaserGame.scale.width > 500){
     upArrow = this.add.image(200,height - 300,'up').setName("up").setInteractive().setScale(2,2);
     downArrow = this.add.image(200,height - 100,'down').setName("down").setInteractive().setScale(2,2);
     leftArrow = this.add.image(100,height - 200,'left').setName("left").setInteractive().setScale(2,2);
     rightArrow = this.add.image(300,height - 200,'right').setName("right").setInteractive().setScale(2,2);
     actionButton = this.add.image(width-150,height - 200,'action').setName("action").setInteractive().setScale(2,2);
-
+    }else{
+      upArrow = this.add.image(100,phaserGame.scale.height - 150,'up').setName("up").setInteractive().setScale(1,1);
+    downArrow = this.add.image(100,phaserGame.scale.height - 50,'down').setName("down").setInteractive().setScale(1,1);
+    leftArrow = this.add.image(50,phaserGame.scale.height - 100,'left').setName("left").setInteractive().setScale(1,1);
+    rightArrow = this.add.image(150,phaserGame.scale.height - 100,'right').setName("right").setInteractive().setScale(1,1);
+    actionButton = this.add.image(phaserGame.scale.width-75,phaserGame.scale.height - 100,'action').setName("action").setInteractive().setScale(1,1);
+    }
 
     downArrow.on('pointerdown', () => {
       /*if(!isUp){*/
@@ -491,72 +499,7 @@ export class MainScene extends Phaser.Scene {
     rightArrow.depth=1;
     actionButton.depth=1;
 
-    //this.input.setTopOnly(false)
 
-/*
-    this.input
-   //.setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
-  .on('pointerdown', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
-    for(let o of objectsClicked){
-      if(o.name == "up"){
-        isUp=true;
-       // return;
-      }//else{
-        //isUp=false;
-      //}
-      if(o.name == "down"){
-        isDown=true;
-        //return;
-      }//else{
-        //isDown=false;
-      //}
-      if(o.name == "left"){
-        isLeft=true;
-        //return;
-      }//else{
-        //isLeft=false;
-      //}
-
-      if(o.name == "right"){
-        isRight=true;
-        //return;
-      }//else{
-       //isRight=false;
-      //}
-
-      if(o.name == "action"){
-        isAction=true;
-
-      }//else{
-        //isAction=false;
-      //}
-    }
-    })
-
-   .setTopOnly(false) // If you want to check if more than the top most hitbox was clicked
-
-  .on('pointerup', (pointer: Phaser.Input.Pointer, objectsClicked: Phaser.GameObjects.GameObject[]) => {
-    for(let o of objectsClicked){
-      if(o.name == "up"){
-        isUp=false;
-
-      }
-      if(o.name == "down"){
-        isDown=false;
-      }
-      if(o.name == "left"){
-        isLeft=false;
-      }
-
-      if(o.name == "right"){
-        isRight=false;
-      }
-
-      if(o.name == "action"){
-        isAction=false;
-      }
-    }
-    })*/
 
     this.healthBarBorder= new Phaser.GameObjects.Graphics(this);
     this.healthBarBorder.x = 8;
@@ -571,22 +514,22 @@ export class MainScene extends Phaser.Scene {
     this.add.existing(this.healthBar);
 
     this.AlcoolBarBorder= new Phaser.GameObjects.Graphics(this);
-    this.AlcoolBarBorder.x = 100;
+    this.AlcoolBarBorder.x =70;
     this.AlcoolBarBorder.y = 23;
     this.AlcoolBarBorder.depth = 1;
     this.add.existing(this.AlcoolBarBorder);
 
     this.AlcoolBar = new Phaser.GameObjects.Graphics(this);
-    this.AlcoolBar.x = 102;
+    this.AlcoolBar.x = 72;//102;
     this.AlcoolBar.y = 25;
     this.AlcoolBar.depth = 1;
     this.add.existing(this.AlcoolBar);
 
 
-    let hpText = this.add.text(20, 10, 'Saúde: ', { font: '30px Arial',color: '#FFFFFF' });
+    let hpText = this.add.text(20, 20, 'Saúde: ', { font: '20px Arial',color: '#FFFFFF' });
     hpText.depth = 1;
-    textAmmo = this.add.text(200, 10, 'Álcool: ', { font: '30px Arial',color: '#FFFFFF'  });
-    textScore = this.add.text(350, 10, 'Pontuação: ', { font: '30px Arial',color: '#FFFFFF'  });
+    textAmmo = this.add.text(140, 20, 'Álcool: ', { font: '20px Arial',color: '#FFFFFF'  });
+    textScore = this.add.text(260, 20, 'Pontuação: ', { font: '20px Arial',color: '#FFFFFF'  });
 
     textAmmo.depth = 1;
     textScore.depth=1;
@@ -630,7 +573,7 @@ export class MainScene extends Phaser.Scene {
 
     this.load.image('remedy','../../assets/remedio.png')
     this.cameras.main.setBackgroundColor('#114E94');
-    this.scale.setGameSize(width,height);
+    //this.scale.setGameSize(width,height);
 
 
 
@@ -666,17 +609,17 @@ export class MainScene extends Phaser.Scene {
     var nextPosY;
     var nextPosRand = (Math.random());
     if(nextPosRand <= 0.25){
-      nextPosX = 200;
-      nextPosY=height/2;
+      nextPosX = phaserGame.scale.width/4;
+      nextPosY=phaserGame.scale.height/4;
     }else if(nextPosRand <= 0.5){
-      nextPosX = width/2;
-      nextPosY=200;
+      nextPosX = phaserGame.scale.width/4;
+      nextPosY=phaserGame.scale.height*3/4;
     }else if(nextPosRand <= 0.75){
-      nextPosX = width-200;
-      nextPosY=height/2;
+      nextPosX = phaserGame.scale.width*3/4;
+      nextPosY=phaserGame.scale.height/2;
     }else{
-      nextPosX = width/2;
-      nextPosY=height-200;
+      nextPosX = phaserGame.scale.width*3/4;
+      nextPosY=phaserGame.scale.height*3/4;
     }
 
 
