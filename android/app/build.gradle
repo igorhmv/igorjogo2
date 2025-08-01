@@ -5,7 +5,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.igorgame.app"
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 21 // rootProject.ext.minSdkVersion
         targetSdkVersion 34 // rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
