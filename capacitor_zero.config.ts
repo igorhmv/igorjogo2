@@ -1,15 +1,14 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.igorgame.app',
-  appName: 'igor-game',
+  appId: 'io.ionic.starter',
+  appName: 'ionic-app-base',
   webDir: 'www',
   server: {
     androidScheme: 'https'
   },
   cordova: {
     preferences: {
-      Orientation: 'portrait',
       ScrollEnabled: 'false',
       BackupWebStorage: 'none',
       SplashMaintainAspectRatio: 'true',
@@ -18,7 +17,15 @@ const config: CapacitorConfig = {
       SplashScreen: 'screen',
       SplashScreenDelay: '3000'
     }
+  },
+  plugins:{
+  LiveUpdates: {
+    appId: '38be06eb',
+    channel: 'Production',
+    autoUpdateMethod: 'background',
+    maxVersions: 2
   }
+},
 };
 
 export default config;
