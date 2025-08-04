@@ -2,17 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     namespace "com.igorgame.app"
-    compileSdkVersion 34 // rootProject.ext.compileSdkVersion
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-  
+    compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.igorgame.app"
-        minSdkVersion 22 // rootProject.ext.minSdkVersion
-        targetSdkVersion 34 // rootProject.ext.targetSdkVersion
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
