@@ -35,6 +35,12 @@ var timer;
 export var player: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 export var textScore:any;
 var textAmmo:any;
+
+var delta:number = 40;
+
+
+
+
 var playerStatus = {
 
   attacking: false,
@@ -383,10 +389,10 @@ function drawUI(scene: Phaser.Scene,player:any,healthBarBorder:Phaser.GameObject
   //health
 
   healthBarBorder.fillStyle(0xFFFFFF);
-  healthBarBorder.fillRect(healthBarBorder.x, healthBarBorder.y + 2, 110, 40 );
+  healthBarBorder.fillRect(healthBarBorder.x, healthBarBorder.y + 2+delta, 110, 40 );
 
   healthBar.fillStyle(0xFF0000);
-  healthBar.fillRect(healthBar.x, healthBar.y + 2, playerStatus.health, 30 );
+  healthBar.fillRect(healthBar.x, healthBar.y + 2+delta, playerStatus.health, 30 );
 
   //score
 
@@ -395,10 +401,10 @@ function drawUI(scene: Phaser.Scene,player:any,healthBarBorder:Phaser.GameObject
   //alcool ammo
   //textAmmo.setText('Álcool:\n'+playerStatus.alcoolAmmo.toString(), { font: '100px Arial',color:'#000000' });
   AlcoolBarBorder.fillStyle(0xFFFFFF);
-  AlcoolBarBorder.fillRect(AlcoolBarBorder.x, AlcoolBarBorder.y + 2, 108, 40 );
+  AlcoolBarBorder.fillRect(AlcoolBarBorder.x, AlcoolBarBorder.y + 2+delta, 108, 40 );
 
   AlcoolBar.fillStyle(0xD3D3D3);
-  AlcoolBar.fillRect(AlcoolBar.x, AlcoolBar.y + 2, playerStatus.alcoolAmmo*10, 30 );
+  AlcoolBar.fillRect(AlcoolBar.x, AlcoolBar.y + 2+delta, playerStatus.alcoolAmmo*10, 30 );
 }
 
 export class MainScene extends Phaser.Scene{
@@ -526,10 +532,10 @@ export class MainScene extends Phaser.Scene{
     this.add.existing(this.AlcoolBar);
 
 
-    let hpText = this.add.text(20, 20, 'Saúde: ', { font: '20px Arial',color: '#FFFFFF' });
+    let hpText = this.add.text(20, 20+delta, 'Saúde: ', { font: '20px Arial',color: '#FFFFFF' });
     hpText.depth = 1;
-    textAmmo = this.add.text(140, 20, 'Álcool: ', { font: '20px Arial',color: '#FFFFFF'  });
-    textScore = this.add.text(260, 20, 'Pontuação: ', { font: '20px Arial',color: '#FFFFFF'  });
+    textAmmo = this.add.text(140, 20+delta, 'Álcool: ', { font: '20px Arial',color: '#FFFFFF'  });
+    textScore = this.add.text(260, 20+delta, 'Pontuação: ', { font: '20px Arial',color: '#FFFFFF'  });
 
     textAmmo.depth = 1;
     textScore.depth=1;

@@ -11,7 +11,7 @@ import Phaser from 'phaser';
 })
 export class PreventHintsComponent extends Phaser.Scene implements OnInit {
 
-
+  delta:number = 90;
 
   backIcon:Phaser.GameObjects.Image | undefined;
 
@@ -47,19 +47,19 @@ export class PreventHintsComponent extends Phaser.Scene implements OnInit {
 
 
   }else{
-    this.add.text(phaserGame.scale.width/2-150, 10, 'Dicas para prevenção', { font: '30px Arial',color:'#000000' });
+    this.add.text(phaserGame.scale.width/2-150, 10+this.delta, 'Dicas para prevenção', { font: '30px Arial',color:'#000000' });
     this.hintsText=[
-    this.add.text(phaserGame.scale.width/2-175, 100, '1.Lavar as mãos;', { font: '20px Arial',color:'#000000' }),
-   this.add.text(phaserGame.scale.width/2-175, 125, '2.Evitar contato próximo com pessoas\ndoentes;', { font: '20px Arial',color:'#000000' }),
-   this.add.text(phaserGame.scale.width/2-175, 175, '3.Ficar em casa quando estiver doente;', { font: '20px Arial',color:'#000000' }),
-    this.add.text(phaserGame.scale.width/2-175, 200, '4.Cobrir boca e nariz ao tossir ou espirrar\ncom um lenço de papel e jogar no lixo;', { font: '20px Arial',color:'#000000' }),
-   this.add.text(phaserGame.scale.width/2-175, 250, '5.Evitar tocar olhos, boca e nariz;', { font: '20px Arial',color:'#000000' }),
-    this.add.text(phaserGame.scale.width/2-175, 275, '6.Cuidado em ambientes com\naglomeração de pessoas;', { font: '20px Arial',color:'#000000' }),
-   this.add.text(phaserGame.scale.width/2-175, 320, '7.Uso de máscara e álcool gel;', { font: '20px Arial',color:'#000000' }),
+    this.add.text(phaserGame.scale.width/2-175, 100+this.delta, '1.Lavar as mãos;', { font: '20px Arial',color:'#000000' }),
+   this.add.text(phaserGame.scale.width/2-175, 125+this.delta, '2.Evitar contato próximo com pessoas\ndoentes;', { font: '20px Arial',color:'#000000' }),
+   this.add.text(phaserGame.scale.width/2-175, 175+this.delta, '3.Ficar em casa quando estiver doente;', { font: '20px Arial',color:'#000000' }),
+    this.add.text(phaserGame.scale.width/2-175, 200+this.delta, '4.Cobrir boca e nariz ao tossir ou espirrar\ncom um lenço de papel e jogar no lixo;', { font: '20px Arial',color:'#000000' }),
+   this.add.text(phaserGame.scale.width/2-175, 250+this.delta, '5.Evitar tocar olhos, boca e nariz;', { font: '20px Arial',color:'#000000' }),
+    this.add.text(phaserGame.scale.width/2-175, 275+this.delta, '6.Cuidado em ambientes com\naglomeração de pessoas;', { font: '20px Arial',color:'#000000' }),
+   this.add.text(phaserGame.scale.width/2-175, 320+this.delta, '7.Uso de máscara e álcool gel;', { font: '20px Arial',color:'#000000' }),
 
     ]
 
-    this.backIcon = this.add.image(phaserGame.scale.width/2,400,'back').setName("back").setInteractive();
+    this.backIcon = this.add.image(phaserGame.scale.width/2,400+this.delta,'back').setName("back").setInteractive();
   }
 
     this.input
